@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Hacker News</string>
+    <string name="err_empty_search_key">Please provide a search category.</string>
+    <string name="err_no_news_found">No news found.</string>
 </resources>

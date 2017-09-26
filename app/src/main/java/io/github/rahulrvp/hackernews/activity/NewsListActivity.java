@@ -23,9 +23,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import io.github.rahulrvp.hackernews.model.HackerNews;
-import io.github.rahulrvp.hackernews.adapter.HackerNewsAdapter;
 import io.github.rahulrvp.hackernews.R;
+import io.github.rahulrvp.hackernews.adapter.HackerNewsAdapter;
+import io.github.rahulrvp.hackernews.model.HackerNews;
 
 public class NewsListActivity extends AppCompatActivity {
 
@@ -105,14 +105,14 @@ public class NewsListActivity extends AppCompatActivity {
                         public void onErrorResponse(VolleyError error) {
                             hideProgress();
 
-                            Toast.makeText(NewsListActivity.this, "No news found.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NewsListActivity.this, R.string.err_no_news_found, Toast.LENGTH_SHORT).show();
                         }
                     });
 
             queue.add(stringRequest);
             showProgress();
         } else {
-            Toast.makeText(this, "Please provide a search category.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.err_empty_search_key, Toast.LENGTH_SHORT).show();
         }
     }
 
