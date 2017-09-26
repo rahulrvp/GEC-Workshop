@@ -23,6 +23,7 @@ public class WebViewActivity extends AppCompatActivity {
             WebView webView = (WebView) findViewById(R.id.hn_web_view);
             if (webView != null) {
                 webView.setWebViewClient(new WebViewClient());
+                webView.getSettings().setAppCacheEnabled(true);
                 webView.loadUrl(url);
             }
         }
