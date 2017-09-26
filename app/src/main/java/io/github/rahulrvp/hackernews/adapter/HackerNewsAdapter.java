@@ -32,6 +32,8 @@ public class HackerNewsAdapter extends RecyclerView.Adapter<HackerNewsAdapter.Vi
         if (newses != null) {
             newsArrayList.addAll(newses);
         }
+
+        notifyDataSetChanged();
     }
 
     @Override
