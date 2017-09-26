@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import io.github.rahulrvp.hackernews.R;
 import io.github.rahulrvp.hackernews.activity.WebViewActivity;
@@ -45,6 +47,7 @@ public class HackerNewsAdapter extends RecyclerView.Adapter<HackerNewsAdapter.Vi
         if (hackerNews != null && holder != null) {
             holder.setTitle(hackerNews.getTitle());
             holder.setAuthor(hackerNews.getAuthor());
+            holder.setCreatedAt(hackerNews.getCreatedAt());
             holder.setOnClick(hackerNews.getUrl());
         }
     }
@@ -59,6 +62,7 @@ public class HackerNewsAdapter extends RecyclerView.Adapter<HackerNewsAdapter.Vi
         private View contentView;
         private TextView titleText;
         private TextView authorText;
+        private TextView createdAtText;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +70,7 @@ public class HackerNewsAdapter extends RecyclerView.Adapter<HackerNewsAdapter.Vi
             contentView = itemView;
             titleText = itemView.findViewById(R.id.title_text);
             authorText = itemView.findViewById(R.id.author_text);
+            createdAtText = itemView.findViewById(R.id.time_text);
         }
 
         void setTitle(String text) {
@@ -76,7 +81,16 @@ public class HackerNewsAdapter extends RecyclerView.Adapter<HackerNewsAdapter.Vi
 
         void setAuthor(String text) {
             if (authorText != null && text != null) {
-                authorText.setText(text);
+                Context context = authorText.getContext();
+                String result = context.getString(R.string.author, text);
+                authorText.setText(result);
+            }
+        }
+
+        void setCreatedAt(Long createdAt) {
+            if (createdAt > 0 && createdAtText != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa", Locale.getDefault());
+                createdAtText.setText(sdf.format(createdAt * 1000));
             }
         }
 

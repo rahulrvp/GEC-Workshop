@@ -14,12 +14,14 @@ public class HackerNews {
     private String title;
     private String url;
     private String author;
+    private Long createdAt;
 
     public HackerNews(JSONObject jsonObject) {
         if (jsonObject != null) {
             this.title = getString(jsonObject, "title");
             this.url = getString(jsonObject, "url");
             this.author = getString(jsonObject, "author");
+            this.createdAt = getLong(jsonObject, "created_at_i");
         }
     }
 
@@ -37,6 +39,19 @@ public class HackerNews {
         return value;
     }
 
+    private Long getLong(JSONObject jsonObject, String key) {
+        Long value = 0L;
+
+        if (jsonObject != null && key != null && jsonObject.has(key)) {
+            try {
+                value = jsonObject.getLong(key);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return value;
+    }
 
     public String getTitle() {
         return title;
@@ -48,5 +63,9 @@ public class HackerNews {
 
     public String getAuthor() {
         return author;
+    }
+
+    public Long getCreatedAt() {
+        return createdAt;
     }
 }
